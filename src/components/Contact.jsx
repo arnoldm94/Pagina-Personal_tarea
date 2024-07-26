@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
+  const navigate = useNavigate();
+
   //Seting the data (form)
   const [data, setData] = useState({
     name: "",
@@ -27,6 +29,9 @@ const Contact = () => {
     userList.push(data);
     localStorage.setItem("user", JSON.stringify(userList));
     clearState();
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
   //event when is validated or no
   const [btnDisabled, setBtnDisabled] = useState(true);
