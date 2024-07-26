@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
   //Seting the data (form)
@@ -21,24 +22,12 @@ const Contact = () => {
   //event when press submit bottom
   const handleSubmit = (event) => {
     event.preventDefault();
-    let userlist = [];
-    console.log(`sending data… ${data.name} ${data.email}`);
-    if (JSON.parse(localStorage.getItem("user")) !== null) {
-      let user = JSON.parse(localStorage.getItem("user"));
-      const oldusers = { ...user };
-      userlist.push(oldusers);
-      userlist.push(data);
 
-      console.log(userlist, "listaa");
-
-      localStorage.setItem("user", JSON.stringify(userlist));
-    } else {
-      localStorage.setItem("user", JSON.stringify(data));
-    }
+    const userList = JSON.parse(localStorage.getItem("user")) || [];
+    userList.push(data);
+    localStorage.setItem("user", JSON.stringify(userList));
     clearState();
-    lin;
   };
-
   //event when is validated or no
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
